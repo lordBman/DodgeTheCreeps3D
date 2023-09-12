@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bugfm51rj6ovb"]
+
+[ext_resource type="Script" path="res://scripts/mob.gd" id="1_l5igy"]
+[ext_resource type="PackedScene" uid="uid://3h7tpy60kotp" path="res://art/mob.glb" id="1_orwt0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jefgl"]
+height = 0.819167
+radius = 1.04572
+
+[node name="Mob" type="CharacterBody3D"]
+script = ExtResource("1_l5igy")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("1_orwt0")]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0170565, 0.252356, -0.0556681)
+shape = SubResource("CylinderShape3D_jefgl")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1.14468, 0, 0, 0, 0.534182, 0, 0, 0, 1.27186, 0, 0.261802, 0.245084)
+aabb = AABB(-1, -1, -1.53924, 2, 2, 3.07848)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_exited"]
